@@ -5,7 +5,13 @@ import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const LocationScreen = () => {
-  const [text, onChangeText] = React.useState('');
+  const [text, setChangeText] = React.useState('');
+
+  // const changeText = value => {
+  //   setChangeText({text: value});
+  // };
+
+  // const submitText = {};
 
   return (
     <View style={styles.wrapper}>
@@ -35,10 +41,12 @@ const LocationScreen = () => {
               paddingHorizontal: 24,
             }}
             placeholder="도로명을 제외한 행정구역까지만 입력해주세요!"
+            // onChangeText={changeText}
+            // onSubmitEditing={submitText}
           />
         </View>
         <View style={styles.textInputResult}>
-          <Text>{text} 검색 결과</Text>
+          <Text>'{text}'' 검색 결과</Text>
         </View>
       </View>
 
