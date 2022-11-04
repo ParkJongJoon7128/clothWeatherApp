@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import SafeAreaView from 'react-native-safe-area-view';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import WeatherScreen from './screens/WeatherScreen';
