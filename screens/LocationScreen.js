@@ -1,17 +1,11 @@
 import React from 'react';
 import {Text, View, StyleSheet, Platform} from 'react-native';
-import TextInput from '../components/add_Address';
+import TextInput from '../components/TextInput';
 import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const LocationScreen = () => {
-  const [text, setChangeText] = React.useState('');
-
-  // const changeText = value => {
-  //   setChangeText({text: value});
-  // };
-
-  // const submitText = {};
+  const [text, setText] = useState('');
 
   return (
     <View style={styles.wrapper}>
@@ -41,15 +35,14 @@ const LocationScreen = () => {
               paddingHorizontal: 24,
             }}
             placeholder="도로명을 제외한 행정구역까지만 입력해주세요!"
-            // onChangeText={changeText}
-            // onSubmitEditing={submitText}
+            setText={setText}
+            value={text}
           />
         </View>
         <View style={styles.textInputResult}>
-          <Text>'{text}'' 검색 결과</Text>
+          <Text>{text} 검색 결과</Text>
         </View>
       </View>
-
       <View style={styles.wrapperBottom}>
         <ScrollView></ScrollView>
       </View>
@@ -96,7 +89,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#000',
     marginTop: 15,
-    marginRight: 300,
+    // marginRight: 280,
   },
 });
 
