@@ -3,13 +3,18 @@ import React from 'react';
 import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 =======
 import {Text, View, StyleSheet, Platform} from 'react-native';
+<<<<<<< HEAD
 >>>>>>> master
 import TextInput from '../components/TextInput';
+=======
+import TextInput from '../components/add_Address';
+>>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
 import {useState} from 'react';
 import axios from 'axios';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 
 const LocationScreen = () => {
+<<<<<<< HEAD
   const [text, setText] = useState('');
 <<<<<<< HEAD
   const [locationObj, setLocationObj] = useState({});
@@ -57,6 +62,15 @@ const LocationScreen = () => {
   };
 =======
 >>>>>>> master
+=======
+  const [text, setChangeText] = React.useState('');
+
+  // const changeText = value => {
+  //   setChangeText({text: value});
+  // };
+
+  // const submitText = {};
+>>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
 
   return (
     <View style={styles.wrapper}>
@@ -86,14 +100,15 @@ const LocationScreen = () => {
               paddingHorizontal: 24,
             }}
             placeholder="도로명을 제외한 행정구역까지만 입력해주세요!"
-            setText={setText}
-            value={text}
+            // onChangeText={changeText}
+            // onSubmitEditing={submitText}
           />
         </View>
         <View style={styles.textInputResult}>
-          <Text>{text} 검색 결과</Text>
+          <Text>'{text}'' 검색 결과</Text>
         </View>
       </View>
+
       <View style={styles.wrapperBottom}>
         <FlatList></FlatList>
         <TouchableOpacity 
@@ -145,6 +160,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#000',
     marginTop: 15,
+<<<<<<< HEAD
     // marginRight: 280,
 <<<<<<< HEAD
   },
@@ -164,6 +180,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 =======
 >>>>>>> master
+=======
+    marginRight: 300,
+>>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
   },
 });
 
