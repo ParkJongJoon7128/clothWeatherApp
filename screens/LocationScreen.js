@@ -1,5 +1,9 @@
 import React from 'react';
+<<<<<<< HEAD
 import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
+=======
+import {Text, View, StyleSheet, Platform} from 'react-native';
+>>>>>>> master
 import TextInput from '../components/TextInput';
 import {useState} from 'react';
 import axios from 'axios';
@@ -7,6 +11,7 @@ import {FlatList, ScrollView} from 'react-native-gesture-handler';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
+<<<<<<< HEAD
   const [locationObj, setLocationObj] = useState({});
 
   // axios
@@ -50,6 +55,8 @@ const LocationScreen = () => {
         });
       });
   };
+=======
+>>>>>>> master
 
   return (
     <View style={styles.wrapper}>
@@ -139,6 +146,7 @@ const styles = StyleSheet.create({
     color: '#000',
     marginTop: 15,
     // marginRight: 280,
+<<<<<<< HEAD
   },
   addLocationButtons: {
     width: 330,
@@ -154,6 +162,8 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',
+=======
+>>>>>>> master
   },
 });
 
