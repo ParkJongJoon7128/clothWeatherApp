@@ -1,11 +1,55 @@
 import React from 'react';
-import {Text, View, StyleSheet, Platform} from 'react-native';
+import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import TextInput from '../components/TextInput';
 import {useState} from 'react';
-import {ScrollView} from 'react-native-gesture-handler';
+import axios from 'axios';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
+  const [locationObj, setLocationObj] = useState({});
+
+  // axios
+  //   .get(
+  //   `https://dapi.kakao.com/v2/local/search/address.json?query=${fullAddress}`,
+  //   {
+  //     headers: {
+  //       Authorization: 'KakaoAK {89c4b5bfe4d36f7d936d31efab545c1d}',
+  //     },
+  //   },
+  // )
+  // .then(res => {
+  //   const location = res.data.documents[0];
+  //   setLocationObj({
+  //     si: location.address.region_1depth_name,
+  //     gu: location.address.region_2depth_name,
+  //     dong: location.address.region_3depth_name,
+  //     locationX: location.address.x,
+  //     locationY: location.address.y,
+  //   });
+  // });
+
+  const callLocationApi = async () => {
+    let url = axios
+      .get(
+        `https://dapi.kakao.com/v2/local/search/address.json?query=${fullAddress}`,
+        {
+          headers: {
+            Authorization: 'KakaoAK {89c4b5bfe4d36f7d936d31efab545c1d}',
+          },
+        },
+      )
+      .then(res => {
+        const location = res.data.documents[0];
+        setLocationObj({
+          si: location.address.region_1depth_name,
+          //     gu: location.address.region_2depth_name,
+          //     dong: location.address.region_3depth_name,
+          //     locationX: location.address.x,
+          //     locationY: location.address.y,
+        });
+      });
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -44,7 +88,12 @@ const LocationScreen = () => {
         </View>
       </View>
       <View style={styles.wrapperBottom}>
-        <ScrollView></ScrollView>
+        <FlatList></FlatList>
+        <TouchableOpacity 
+        style={styles.addLocationButtons}
+        onPress={callLocationApi}>
+          <Text style={styles.addLocationButtonsText}>위치 추척</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -90,6 +139,21 @@ const styles = StyleSheet.create({
     color: '#000',
     marginTop: 15,
     // marginRight: 280,
+  },
+  addLocationButtons: {
+    width: 330,
+    height: 50,
+    backgroundColor: '#00f',
+    padding: 10,
+    margin: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  addLocationButtonsText: {
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
   },
 });
 
