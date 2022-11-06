@@ -4,12 +4,8 @@ import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 =======
 import {Text, View, StyleSheet, Platform} from 'react-native';
 <<<<<<< HEAD
-<<<<<<< HEAD
 >>>>>>> master
 import TextInput from '../components/TextInput';
-=======
-import TextInput from '../components/add_Address';
->>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
 =======
 import TextInput from '../components/add_Address';
 >>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
@@ -18,7 +14,6 @@ import axios from 'axios';
 import {FlatList, ScrollView} from 'react-native-gesture-handler';
 
 const LocationScreen = () => {
-<<<<<<< HEAD
 <<<<<<< HEAD
   const [text, setText] = useState('');
 <<<<<<< HEAD
@@ -68,8 +63,6 @@ const LocationScreen = () => {
 =======
 >>>>>>> master
 =======
-=======
->>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
   const [text, setChangeText] = React.useState('');
 
   // const changeText = value => {
@@ -77,9 +70,6 @@ const LocationScreen = () => {
   // };
 
   // const submitText = {};
-<<<<<<< HEAD
->>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
-=======
 >>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
 
   return (
@@ -171,7 +161,6 @@ const styles = StyleSheet.create({
     color: '#000',
     marginTop: 15,
 <<<<<<< HEAD
-<<<<<<< HEAD
     // marginRight: 280,
 <<<<<<< HEAD
   },
@@ -191,9 +180,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
 =======
 >>>>>>> master
-=======
-    marginRight: 300,
->>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
 =======
     marginRight: 300,
 >>>>>>> parent of 57ec3ce... LcationScreen 디자인중 (textinput 값 보여주기 - success!)
