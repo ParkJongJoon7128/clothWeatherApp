@@ -3,9 +3,33 @@ import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import TextInput from '../components/TextInput';
 import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
+import {axios} from 'axios';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
+  const [locationObj, setLocationObj] = useState({});
+
+  const callLocationApi = async ({text}) => {
+    let url = axios
+      .get(
+        `https://dapi.kakao.com/v2/local/search/address.json?query=${text}`,
+        {
+          headers: {
+            Authorization: 'KakaoAK {89c4b5bfe4d36f7d936d31efab545c1d}',
+          },
+        },
+      )
+      .then(res => {
+        const location = res.data.documents[0];
+        setLocationObj({
+          si: location.address.region_1depth_name,
+          //     gu: location.address.region_2depth_name,
+          //     dong: location.address.region_3depth_name,
+          //     locationX: location.address.x,
+          //     locationY: location.address.y,
+        });
+      });
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -45,7 +69,9 @@ const LocationScreen = () => {
       </View>
       <View style={styles.wrapperBottom}>
         <ScrollView></ScrollView>
-        <TouchableOpacity style={styles.callLocationApiButton}>
+        <TouchableOpacity
+          onPress={callLocationApi(text)}
+          style={styles.callLocationApiButton}>
           <Text style={styles.callLocationApiButtonText}>위치 등록하기</Text>
         </TouchableOpacity>
       </View>
