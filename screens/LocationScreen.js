@@ -9,7 +9,7 @@ const LocationScreen = () => {
   const [text, setText] = useState('');
   const [locationObj, setLocationObj] = useState({});
 
-  //이 상태에서 절대 건들지 말것
+  //이 상태에서 절대 건들지 말것 (new1 브랜치에다 만들고 master에 다시 옮겨 올려야됨)
 
   const callLocationApi = async ({text}) => {
     let url = axios
