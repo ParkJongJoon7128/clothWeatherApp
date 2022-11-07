@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Platform} from 'react-native';
 import TextInput from '../components/TextInput';
 import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
@@ -69,11 +69,14 @@ const LocationScreen = () => {
       </View>
       <View style={styles.wrapperBottom}>
         <ScrollView></ScrollView>
+<<<<<<< HEAD
         <TouchableOpacity
           onPress={callLocationApi(text)}
           style={styles.callLocationApiButton}>
           <Text style={styles.callLocationApiButtonText}>위치 등록하기</Text>
         </TouchableOpacity>
+=======
+>>>>>>> parent of c1512c5... LocationScreen 디자인중 (행정구역 데이터 api 받아오기 - 작업중
       </View>
     </View>
   );
@@ -119,21 +122,6 @@ const styles = StyleSheet.create({
     color: '#000',
     marginTop: 15,
     // marginRight: 280,
-  },
-  callLocationApiButton: {
-    width: 350,
-    height: 50,
-    backgroundColor: '#00f',
-    margin: 40,
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-  },
-  callLocationApiButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
   },
 });
 
