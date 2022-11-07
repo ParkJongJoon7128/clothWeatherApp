@@ -3,7 +3,7 @@ import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import TextInput from '../components/TextInput';
 import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
-import {axios} from 'axios';
+import axios from 'axios';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
