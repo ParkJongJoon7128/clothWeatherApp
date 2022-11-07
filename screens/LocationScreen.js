@@ -1,11 +1,35 @@
 import React from 'react';
-import {Text, View, StyleSheet, Platform} from 'react-native';
+import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
 import TextInput from '../components/TextInput';
 import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
+import {axios} from 'axios';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
+  const [locationObj, setLocationObj] = useState({});
+
+  const callLocationApi = async ({text}) => {
+    let url = axios
+      .get(
+        `https://dapi.kakao.com/v2/local/search/address.json?query=${text}`,
+        {
+          headers: {
+            Authorization: 'KakaoAK {89c4b5bfe4d36f7d936d31efab545c1d}',
+          },
+        },
+      )
+      .then(res => {
+        const location = res.data.documents[0];
+        setLocationObj({
+          si: location.address.region_1depth_name,
+          gu: location.address.region_2depth_name,
+          dong: location.address.region_3depth_name,
+          //     locationX: location.address.x,
+          //     locationY: location.address.y,
+        });
+      });
+  };
 
   return (
     <View style={styles.wrapper}>
@@ -40,11 +64,16 @@ const LocationScreen = () => {
           />
         </View>
         <View style={styles.textInputResult}>
-          <Text>{text} 검색 결과</Text>
+          <Text>'{text}' 검색 결과</Text>
         </View>
       </View>
       <View style={styles.wrapperBottom}>
         <ScrollView></ScrollView>
+        <TouchableOpacity
+          style={styles.callLocationApiButton}
+          onPress={callLocationApi({text})}>
+          <Text style={styles.callLocationApiButtonText}>위치 선택하기</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -90,6 +119,21 @@ const styles = StyleSheet.create({
     color: '#000',
     marginTop: 15,
     // marginRight: 280,
+  },
+  callLocationApiButton: {
+    width: 350,
+    height: 50,
+    backgroundColor: '#00f',
+    margin: 40,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  callLocationApiButtonText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#fff',
   },
 });
 
