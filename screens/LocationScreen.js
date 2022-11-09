@@ -1,9 +1,16 @@
 import React from 'react';
-import {Text, View, StyleSheet, Platform, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  Platform,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
 import TextInput from '../components/TextInput';
 import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
-import {axios} from 'axios';
+import axios from 'axios';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
@@ -12,26 +19,30 @@ const LocationScreen = () => {
   //이 상태에서 절대 건들지 말것 (new1 브랜치에다 만들고 master에 다시 옮겨 올려야됨)
 
   const callLocationApi = async ({text}) => {
-    axios
-      .get(
-        `https://dapi.kakao.com/v2/local/search/address.json?query=${text}`,
-        {
-          headers: {
-            Authorization: 'KakaoAK {89c4b5bfe4d36f7d936d31efab545c1d}',
+    try {
+      axios
+        .get(
+          `https://dapi.kakao.com/v2/local/search/address.json?query=${text}`,
+          {
+            headers: {
+              Authorization: 'KakaoAK 89c4b5bfe4d36f7d936d31efab545c1d',
+            },
           },
-        },
-      )
-      .then(res => {
-        const location = res.data.documents[0];
-        setLocationObj({
-          si: location.address.region_1depth_name,
-          gu: location.address.region_2depth_name,
-          dong: location.address.region_3depth_name,
-          locationX: location.address.x,
-          locationY: location.address.y,
+        )
+        .then(res => {
+          const location = res.data.documents[0];
+          setLocationObj({
+            si: location.address.region_1depth_name,
+            gu: location.address.region_2depth_name,
+            dong: location.address.region_3depth_name,
+            locationX: location.address.x,
+            locationY: location.address.y,
+          });
+          console.log(locationObj);
         });
-      });
-    console.log('location : ', locationObj);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -72,7 +83,11 @@ const LocationScreen = () => {
       </View>
       <View style={styles.wrapperBottom}>
         <ScrollView></ScrollView>
+        <Text>{locationObj.si}</Text>
+        <Text>{locationObj.gu}</Text>
+        <Text>{locationObj.dong}</Text>
         <TouchableOpacity
+          activeOpacity={0.8}
           style={styles.callLocationApiButton}
           onPress={callLocationApi({text})}>
           <Text style={styles.callLocationApiButtonText}>위치 선택하기</Text>
@@ -93,10 +108,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff',
   },
   wrapperBottom: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   locationTitle: {
     color: '#00f',

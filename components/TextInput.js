@@ -18,4 +18,5 @@ const TextInputs = ({style, setText, value}) => {
     />
   );
 };
+
 export default TextInputs;
