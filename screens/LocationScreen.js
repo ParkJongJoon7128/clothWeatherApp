@@ -12,7 +12,7 @@ const LocationScreen = () => {
   //이 상태에서 절대 건들지 말것 (new1 브랜치에다 만들고 master에 다시 옮겨 올려야됨)
 
   const callLocationApi = async ({text}) => {
-    let url = axios
+    axios
       .get(
         `https://dapi.kakao.com/v2/local/search/address.json?query=${text}`,
         {
@@ -27,10 +27,11 @@ const LocationScreen = () => {
           si: location.address.region_1depth_name,
           gu: location.address.region_2depth_name,
           dong: location.address.region_3depth_name,
-          //     locationX: location.address.x,
-          //     locationY: location.address.y,
+          locationX: location.address.x,
+          locationY: location.address.y,
         });
       });
+    console.log('location : ', locationObj);
   };
 
   return (
