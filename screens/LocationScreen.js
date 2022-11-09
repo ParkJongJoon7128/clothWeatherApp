@@ -20,7 +20,7 @@ const LocationScreen = () => {
 
   const callLocationApi = async ({text}) => {
     try {
-      axios
+      let response = await axios
         .get(
           `https://dapi.kakao.com/v2/local/search/address.json?query=${text}`,
           {
@@ -29,8 +29,8 @@ const LocationScreen = () => {
             },
           },
         )
-        .then(res => {
-          const location = res.data.documents[0];
+        .then(response => {
+          const location = response.data.documents[0];
           setLocationObj({
             si: location.address.region_1depth_name,
             gu: location.address.region_2depth_name,
