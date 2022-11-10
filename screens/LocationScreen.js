@@ -16,9 +16,6 @@ const LocationScreen = () => {
   const [text, setText] = useState('');
   const [locationObj, setLocationObj] = useState({});
 
-  //LocationScreen 디자인중 (행정구역 데이터 api 받아오기 - 성공, 행정구역 데이터관리 - 작업중)
-  //더 연습하기
-
   const callLocationApi = async ({text}) => {
     try {
       let response = await axios
@@ -83,10 +80,15 @@ const LocationScreen = () => {
         </View>
       </View>
       <View style={styles.wrapperBottom}>
-        <ScrollView></ScrollView>
-        <Text style={styles.locationText_si}>{locationObj.si}</Text>
-        <Text style={styles.locationText_gu}>{locationObj.gu}</Text>
-        <Text style={styles.locationText_dong}>{locationObj.dong}</Text>
+        <Text style={styles.locationText}>
+          {locationObj.si} {locationObj.gu} {locationObj.dong}
+        </Text>
+        <Text style={styles.locationText_dong}>
+          위도 : {locationObj.locationX}
+        </Text>
+        <Text style={styles.locationText_dong}>
+          경도 : {locationObj.locationY}
+        </Text>
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.callLocationApiButton}
@@ -138,7 +140,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     color: '#000',
     marginTop: 15,
-    // marginRight: 280,
   },
   callLocationApiButton: {
     width: 350,
@@ -150,19 +151,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
-  callLocationApiButtonText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  locationText_si: {
-    fontSize: 32,
-  },
-  locationText_gu: {
-    fontSize: 32,
-  },
-  locationText_dong: {
-    fontSize: 32,
+  callLocationApiButtonText:
+    Platform.OS === 'ios'
+      ? {
+          fontSize: 16,
+          fontWeight: 'bold',
+          color: '#fff',
+        }
+      : {
+          fontSize: 12,
+          fontWeight: 'bold',
+          color: '#fff',
+        },
+  locationText: {
+    fontSize: 24,
   },
 });
 
