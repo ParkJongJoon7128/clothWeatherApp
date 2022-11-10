@@ -84,13 +84,13 @@ const LocationScreen = () => {
       </View>
       <View style={styles.wrapperBottom}>
         <ScrollView></ScrollView>
-        <Text>{locationObj.si}</Text>
-        <Text>{locationObj.gu}</Text>
-        <Text>{locationObj.dong}</Text>
+        <Text style={styles.locationText_si}>{locationObj.si}</Text>
+        <Text style={styles.locationText_gu}>{locationObj.gu}</Text>
+        <Text style={styles.locationText_dong}>{locationObj.dong}</Text>
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.callLocationApiButton}
-          onPress={callLocationApi({text})}>
+          onPress={() => callLocationApi({text})}>
           <Text style={styles.callLocationApiButtonText}>위치 선택하기</Text>
         </TouchableOpacity>
       </View>
@@ -154,6 +154,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: '#fff',
+  },
+  locationText_si: {
+    fontSize: 32,
+  },
+  locationText_gu: {
+    fontSize: 32,
+  },
+  locationText_dong: {
+    fontSize: 32,
   },
 });
 

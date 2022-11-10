@@ -9,7 +9,7 @@ const TextInputs = ({style, setText, value}) => {
   return (
     <TextInput
       style={style}
-      //inlineImageLeft="search_icon"
+      // inlineImageLeft="search_icon"
       numberOfLines={1}
       placeholderTextColor="gray"
       textAlign="left"
