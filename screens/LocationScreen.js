@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -8,13 +8,15 @@ import {
   Alert,
 } from 'react-native';
 import TextInput from '../components/TextInput';
-import {useState} from 'react';
 import {ScrollView} from 'react-native-gesture-handler';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
   const [locationObj, setLocationObj] = useState({});
+
+  // useEffect(() => {}, []);
 
   const callLocationApi = async ({text}) => {
     try {
