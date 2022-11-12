@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -7,15 +7,35 @@ import WeatherScreen from './screens/WeatherScreen';
 import CodyScreen from './screens/CodyScreen';
 import LocationScreen from './screens/LocationScreen';
 
+// import {SelectLocation} from './src/LocationContext';
+
 const Tab = createBottomTabNavigator();
 
 function App() {
+  // const [selectLocation, setSelectLocation] = useContext(SelectLocation);
+  const [test, setTest] = useState({});
+
+  const setTestHandler = data => {
+    setTest(data);
+    console.log('set event !!');
+    console.log(test);
+  };
+  const getTestHandler = () => {
+    console.log('get event !!');
+    return test;
+  };
+
   return (
     <NavigationContainer>
       <Tab.Navigator initialRouteName="Location">
         <Tab.Screen
           name="Location"
-          component={LocationScreen}
+          component={({navigation}) => (
+            <LocationScreen
+              test={{setTestHandler, getTestHandler}}
+              navigation={navigation}
+            />
+          )}
           options={{
             title: '위치',
             tabBarIcon: ({color, size}) => (
@@ -25,7 +45,12 @@ function App() {
         />
         <Tab.Screen
           name="Weather"
-          component={WeatherScreen}
+          component={({navigation}) => (
+            <WeatherScreen
+              test={{setTestHandler, getTestHandler}}
+              navigation={navigation}
+            />
+          )}
           options={{
             title: '날씨',
             tabBarIcon: ({color, size}) => (

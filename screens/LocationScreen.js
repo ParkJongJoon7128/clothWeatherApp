@@ -9,15 +9,16 @@ import {
 } from 'react-native';
 import TextInput from '../components/TextInput';
 import {ScrollView} from 'react-native-gesture-handler';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+// import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LocationScreen = () => {
+const LocationScreen = props => {
   const [text, setText] = useState('');
   const [locationObj, setLocationObj] = useState({});
 
-  // useEffect(() => {}, []);
-
+  const onClickEvent = data => {
+    props.test.setTestHandler({...data});
+  };
   const callLocationApi = async ({text}) => {
     try {
       let response = await axios
@@ -38,7 +39,10 @@ const LocationScreen = () => {
             locationX: location.address.x,
             locationY: location.address.y,
           });
-          console.log(locationObj);
+          onClickEvent({
+            locationX: location.address.x,
+            locationY: location.address.y,
+          });
         });
     } catch (error) {
       console.log(error);
