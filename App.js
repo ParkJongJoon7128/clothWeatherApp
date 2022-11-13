@@ -7,12 +7,9 @@ import WeatherScreen from './screens/WeatherScreen';
 import CodyScreen from './screens/CodyScreen';
 import LocationScreen from './screens/LocationScreen';
 
-// import {SelectLocation} from './src/LocationContext';
-
 const Tab = createBottomTabNavigator();
 
 function App() {
-  // const [selectLocation, setSelectLocation] = useContext(SelectLocation);
   const [test, setTest] = useState({});
 
   const setTestHandler = data => {
