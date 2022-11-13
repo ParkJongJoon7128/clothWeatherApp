@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   Text,
   View,
@@ -10,11 +10,14 @@ import {
 import TextInput from '../components/TextInput';
 import {ScrollView} from 'react-native-gesture-handler';
 import axios from 'axios';
+import {LocationContext} from '../context/LocationContext';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const LocationScreen = props => {
   const [text, setText] = useState('');
   const [locationObj, setLocationObj] = useState({});
+
+  const data = useContext(LocationContext);
 
   const onClickEvent = data => {
     props.test.setTestHandler({...data});
@@ -44,6 +47,7 @@ const LocationScreen = props => {
             locationY: location.address.y,
           });
         });
+      console.log(data);
     } catch (error) {
       console.log(error);
     }

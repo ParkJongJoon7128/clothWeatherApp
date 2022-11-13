@@ -1,8 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Text, View} from 'react-native';
 import {StyleSheet} from 'react-native';
+import {LocationContext} from '../context/LocationContext';
 
 const WeatherScreen = props => {
+  const data = useContext(LocationContext);
+
   return (
     <View style={styles.wrapper}>
       <Text>
