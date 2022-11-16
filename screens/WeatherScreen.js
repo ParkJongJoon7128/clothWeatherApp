@@ -9,11 +9,7 @@ const WeatherScreen = () => {
 
   return (
     <View style={styles.wrapper}>
-      <Text>
-        {/* X : {props.test.getTestHandler().locationX} Y :{' '}
-        {props.test.getTestHandler().locationY} */}
-        X : {locationObj.address.locationX}
-      </Text>
+      <Text>X : {locationObj.address.locationX}</Text>
       <Text>Y : {locationObj.address.locationY}</Text>
     </View>
   );
