@@ -1,17 +1,20 @@
 import React, {useContext} from 'react';
-import {Text, View} from 'react-native';
+import {AppRegistry, Text, View} from 'react-native';
 import {StyleSheet} from 'react-native';
-import {LocationContext} from '../context/LocationContext';
 
-const WeatherScreen = props => {
-  const data = useContext(LocationContext);
+import {LocationContext} from './LocationScreen';
+
+const WeatherScreen = () => {
+  const {locationObj, setLocationObj} = useContext(LocationContext);
 
   return (
     <View style={styles.wrapper}>
       <Text>
-        X : {props.test.getTestHandler().locationX} Y :{' '}
-        {props.test.getTestHandler().locationY}
+        {/* X : {props.test.getTestHandler().locationX} Y :{' '}
+        {props.test.getTestHandler().locationY} */}
+        X : {locationObj.adress.locationX}
       </Text>
+      <Text>Y : {locationObj.adress.locationY}</Text>
     </View>
   );
 };

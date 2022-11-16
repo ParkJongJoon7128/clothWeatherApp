@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -8,20 +8,17 @@ import {
   Alert,
 } from 'react-native';
 import TextInput from '../components/TextInput';
-import {ScrollView} from 'react-native-gesture-handler';
 import axios from 'axios';
-import {LocationContext} from '../context/LocationContext';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const LocationScreen = props => {
+const LocationScreen = () => {
   const [text, setText] = useState('');
   const [locationObj, setLocationObj] = useState({});
 
-  const data = useContext(LocationContext);
+  // const onClickEvent = data => {
+  //   props.test.setTestHandler({...data});
+  // };
 
-  const onClickEvent = data => {
-    props.test.setTestHandler({...data});
-  };
   const callLocationApi = async ({text}) => {
     try {
       let response = await axios
@@ -42,12 +39,12 @@ const LocationScreen = props => {
             locationX: location.address.x,
             locationY: location.address.y,
           });
-          onClickEvent({
-            locationX: location.address.x,
-            locationY: location.address.y,
-          });
+          // onClickEvent({
+          //   locationX: location.address.x,
+          //   locationY: location.address.y,
+          // });
         });
-      console.log(data);
+      console.log(locationObj);
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +99,8 @@ const LocationScreen = props => {
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.callLocationApiButton}
-          onPress={() => callLocationApi({text})}>
+          onPress={() => callLocationApi({text})}
+          locationObj={locationObj}>
           <Text style={styles.callLocationApiButtonText}>위치 선택하기</Text>
         </TouchableOpacity>
       </View>
