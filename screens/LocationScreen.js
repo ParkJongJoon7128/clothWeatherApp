@@ -15,9 +15,7 @@ import {LocationContext} from '../context/LocationContext';
 
 const LocationScreen = props => {
   const [text, setText] = useState('');
-  const [locationObj, setLocationObj] = useState({});
-
-  const data = useContext(LocationContext);
+  const {locationObj, setLocationObj} = useContext(LocationContext);
 
   const onClickEvent = data => {
     props.test.setTestHandler({...data});
@@ -47,7 +45,6 @@ const LocationScreen = props => {
             locationY: location.address.y,
           });
         });
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
