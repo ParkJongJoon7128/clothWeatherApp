@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,6 +14,10 @@ const Tab = createBottomTabNavigator();
 function App() {
   const [test, setTest] = useState({});
   const [locationObj, setLocationObj] = useState({});
+  
+  useEffect(() => {
+    console.log('locationObjIs: ' + JSON.stringify(locationObj, null, 4));
+  }, [locationObj]);
 
   const setTestHandler = data => {
     setTest(data);
