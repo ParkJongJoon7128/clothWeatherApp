@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {
   Text,
   View,
@@ -11,9 +11,11 @@ import TextInput from '../components/TextInput';
 import axios from 'axios';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import {LocationContext} from '../context/LocationContext';
+
 const LocationScreen = () => {
   const [text, setText] = useState('');
-  const [locationObj, setLocationObj] = useState({});
+  const {locationObj, setLocationObj} = useContext(LocationContext);
 
   // const onClickEvent = data => {
   //   props.test.setTestHandler({...data});
