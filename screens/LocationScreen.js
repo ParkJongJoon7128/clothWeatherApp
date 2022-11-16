@@ -17,10 +17,6 @@ const LocationScreen = () => {
   const [text, setText] = useState('');
   const {locationObj, setLocationObj} = useContext(LocationContext);
 
-  // const onClickEvent = data => {
-  //   props.test.setTestHandler({...data});
-  // };
-
   const callLocationApi = async ({text}) => {
     try {
       let response = await axios
@@ -41,10 +37,6 @@ const LocationScreen = () => {
             locationX: location.address.x,
             locationY: location.address.y,
           });
-          // onClickEvent({
-          //   locationX: location.address.x,
-          //   locationY: location.address.y,
-          // });
         });
       console.log(locationObj);
     } catch (error) {

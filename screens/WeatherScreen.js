@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {AppRegistry, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 
 import {LocationContext} from './LocationScreen';
@@ -12,9 +12,9 @@ const WeatherScreen = () => {
       <Text>
         {/* X : {props.test.getTestHandler().locationX} Y :{' '}
         {props.test.getTestHandler().locationY} */}
-        X : {locationObj.adress.locationX}
+        X : {locationObj.address.locationX}
       </Text>
-      <Text>Y : {locationObj.adress.locationY}</Text>
+      <Text>Y : {locationObj.address.locationY}</Text>
     </View>
   );
 };
