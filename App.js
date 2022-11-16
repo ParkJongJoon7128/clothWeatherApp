@@ -23,7 +23,7 @@ function App() {
   //   return test; }
   //
 
-  const {locationObj, setLocationObj} = useContext(LocationContext);
+  const [locationObj, setLocationObj] = useState({});
 
   return (
     <LocationContext.Provider value={{locationObj, setLocationObj}}>
