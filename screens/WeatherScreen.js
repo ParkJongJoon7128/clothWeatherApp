@@ -2,15 +2,15 @@ import React, {useContext} from 'react';
 import {Text, View} from 'react-native';
 import {StyleSheet} from 'react-native';
 
-import {LocationContext} from './LocationScreen';
+import {LocationContext} from '../context/LocationContext';
 
 const WeatherScreen = () => {
   const {locationObj, setLocationObj} = useContext(LocationContext);
 
   return (
     <View style={styles.wrapper}>
-      <Text>X : {locationObj.address.locationX}</Text>
-      <Text>Y : {locationObj.address.locationY}</Text>
+      <Text>X : {locationObj.locationX}</Text>
+      <Text>Y : {locationObj.locationY}</Text>
     </View>
   );
 };

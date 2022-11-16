@@ -13,9 +13,9 @@ const Tab = createBottomTabNavigator();
 function App() {
   const [locationObj, setLocationObj] = useState({});
 
-  useEffect(() => {
-    console.log('locationObjIs: ' + JSON.stringify(locationObj, null, 4));
-  }, [locationObj]);
+  // useEffect(() => {
+  //   console.log('locationObjIs: ' + JSON.stringify(locationObj, null, 4));
+  // }, [locationObj]);
 
   return (
     <LocationContext.Provider value={{locationObj, setLocationObj}}>
