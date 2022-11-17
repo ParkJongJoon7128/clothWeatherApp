@@ -38,7 +38,6 @@ const LocationScreen = () => {
             locationY: location.address.y,
           });
         });
-      console.log(locationObj);
     } catch (error) {
       console.log(error);
     }
