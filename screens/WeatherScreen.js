@@ -15,7 +15,7 @@ const WeatherScreen = () => {
 
   useEffect(() => {
     getWeatherApi();
-  }, []);
+  }, [weather]);
 
   const getWeatherApi = async () => {
     const API_KEY = 'd55c3e37b019afcec832b364a32cbf81';
