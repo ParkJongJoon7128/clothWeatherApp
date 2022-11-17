@@ -5,8 +5,6 @@ import axios from 'axios';
 
 import {LocationContext} from '../context/LocationContext';
 
-const API_KEY = 'd55c3e37b019afcec832b364a32cbf81';
-
 const WeatherScreen = () => {
   const {locationObj} = useContext(LocationContext);
 
@@ -20,6 +18,7 @@ const WeatherScreen = () => {
   }, []);
 
   const getWeatherApi = async () => {
+    const API_KEY = 'd55c3e37b019afcec832b364a32cbf81';
     try {
       const response = `https://api.openweathermap.org/data/2.5/weather?lat=${locationObj.locationX}&lon=${locationObj.locationY}&appid=${API_KEY}`;
       await axios.get(response).then(responseData => {
