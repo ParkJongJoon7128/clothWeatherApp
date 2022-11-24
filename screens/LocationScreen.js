@@ -20,7 +20,7 @@ const LocationScreen = () => {
   const callLocationApi = async ({text}) => {
     const encodeText = encodeURI(text);
     try {
-      let response = await axios
+      await axios
         .get(
           `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeText}`,
           {
