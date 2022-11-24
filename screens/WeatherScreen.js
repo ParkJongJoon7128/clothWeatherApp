@@ -18,18 +18,19 @@ const WeatherScreen = () => {
   }, [weather]);
 
   const getWeatherApi = async () => {
-    const API_KEY = 'd55c3e37b019afcec832b364a32cbf81';
+    const API_KEY = '2cd518b6f461fdf5a043511d0292ab5c';
+    const response = `https://api.openweathermap.org/data/2.5/weather?lat=${locationObj.locationX}&lon=${locationObj.locationY}&appid=${API_KEY}`;
     try {
-      const response = `https://api.openweathermap.org/data/2.5/weather?lat=${locationObj.locationX}&lon=${locationObj.locationY}&appid=${API_KEY}`;
-      await axios.get(response).then(responseData => {
-        const data = responseData.data;
+      await axios.get(response).then(res => {
+        const data = res.data;
         setWeather({
           temp: data.main.temp,
           condition: data.weather[0].main,
         });
       });
+      console.log(response);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data);
     }
   };
 

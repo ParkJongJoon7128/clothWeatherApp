@@ -18,10 +18,11 @@ const LocationScreen = () => {
   const {locationObj, setLocationObj} = useContext(LocationContext);
 
   const callLocationApi = async ({text}) => {
+    const encodeText = encodeURI(text);
     try {
       let response = await axios
         .get(
-          `https://dapi.kakao.com/v2/local/search/address.json?query=${text}`,
+          `https://dapi.kakao.com/v2/local/search/address.json?query=${encodeText}`,
           {
             headers: {
               Authorization: 'KakaoAK 89c4b5bfe4d36f7d936d31efab545c1d',
