@@ -19,7 +19,7 @@ const WeatherScreen = () => {
 
   const getWeatherApi = async () => {
     const API_KEY = '2cd518b6f461fdf5a043511d0292ab5c';
-    const response = `https://api.openweathermap.org/data/2.5/weather?lat=${locationObj.locationX}&lon=${locationObj.locationY}&appid=${API_KEY}`;
+    const response = `https://api.openweathermap.org/data/2.5/weather?lat=${locationObj.locationY}&lon=${locationObj.locationX}&appid=${API_KEY}`;
     try {
       await axios.get(response).then(res => {
         const data = res.data;
