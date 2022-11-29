@@ -14,18 +14,19 @@ const WeatherScreen = () => {
   });
 
   useEffect(() => {
-    getWeatherApi();
+    setInterval(() => getWeatherApi(), 10000);
   }, [weather]);
 
   const getWeatherApi = async () => {
     const API_KEY = '2cd518b6f461fdf5a043511d0292ab5c';
-    const response = `https://api.openweathermap.org/data/2.5/weather?lat=${locationObj.locationX}&lon=${locationObj.locationY}&appid=${API_KEY}`;
+    const response = `https://api.openweathermap.org/data/2.5/weather?lat=${locationObj.locationY}&lon=${locationObj.locationX}&appid=${API_KEY}&units=metric`;
     try {
       await axios.get(response).then(res => {
         const data = res.data;
         setWeather({
           temp: data.main.temp,
           condition: data.weather[0].main,
+          description: data.weather[0].description,
         });
       });
       console.log(response);
@@ -40,13 +41,14 @@ const WeatherScreen = () => {
         <Text style={styles.locationTitle}>{locationObj.dong}</Text>
       </View>
       <View style={styles.locationWrapper}>
-        <Text>X : {locationObj.locationX}</Text>
-        <Text>Y : {locationObj.locationY}</Text>
+        <Text>X : {locationObj.locationY}</Text>
+        <Text>Y : {locationObj.locationX}</Text>
       </View>
 
       <View style={styles.temperature}>
-        <Text>{weather.temp}</Text>
+        <Text>{parseFloat(weather.temp).toFixed(1)}</Text>
         <Text>{weather.condition}</Text>
+        <Text>{weather.description}</Text>
       </View>
     </View>
   );

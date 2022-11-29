@@ -35,6 +35,7 @@ const LocationScreen = () => {
             si: location.address.region_1depth_name,
             gu: location.address.region_2depth_name,
             dong: location.address.region_3depth_name,
+            // 위도와 경도 값 바뀜
             locationX: location.address.x,
             locationY: location.address.y,
           });
