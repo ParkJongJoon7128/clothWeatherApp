@@ -4,9 +4,11 @@ import {StyleSheet} from 'react-native';
 import axios from 'axios';
 
 import {LocationContext} from '../context/LocationContext';
+import {TemperatureContext} from '../context/TemperatureContext';
 
 const WeatherScreen = () => {
   const {locationObj} = useContext(LocationContext);
+  // const [weather, setWeather] = useContext(TemperatureContext);
 
   const [weather, setWeather] = useState({
     temp: 0,
@@ -29,7 +31,7 @@ const WeatherScreen = () => {
           description: data.weather[0].description,
         });
       });
-      console.log(response);
+      console.log(setWeather);
     } catch (error) {
       console.log(error.response.data);
     }
@@ -40,15 +42,17 @@ const WeatherScreen = () => {
       <View>
         <Text style={styles.locationTitle}>{locationObj.dong}</Text>
       </View>
-      <View style={styles.locationWrapper}>
-        <Text>X : {locationObj.locationY}</Text>
-        <Text>Y : {locationObj.locationX}</Text>
-      </View>
 
-      <View style={styles.temperature}>
-        <Text>{parseFloat(weather.temp).toFixed(1)}</Text>
-        <Text>{weather.condition}</Text>
-        <Text>{weather.description}</Text>
+      <View style={styles.locationWrapper}>
+        <Text style={styles.locationTemperature}>
+          {parseFloat(weather.temp).toFixed(1)}
+        </Text>
+        <Text style={styles.locationTemperatureCondition}>
+          {weather.condition}
+        </Text>
+        <Text style={styles.locationTemperatureDescription}>
+          {weather.description}
+        </Text>
       </View>
     </View>
   );
@@ -67,8 +71,14 @@ const styles = StyleSheet.create({
   locationWrapper: {
     margin: 50,
   },
-  temperature: {
-    margin: 50,
+  locationTemperature: {
+    fontSize: 36,
+  },
+  locationTemperatureCondition: {
+    fontSize: 36,
+  },
+  locationTemperatureDescription: {
+    fontSize: 36,
   },
 });
 
