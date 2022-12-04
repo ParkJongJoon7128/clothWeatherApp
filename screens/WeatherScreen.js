@@ -16,7 +16,7 @@ const WeatherScreen = () => {
   });
 
   useEffect(() => {
-    setInterval(() => getWeatherApi(), 10000);
+    setTimeout(() => getWeatherApi(), 10000);
   }, [weather]);
 
   const getWeatherApi = async () => {
