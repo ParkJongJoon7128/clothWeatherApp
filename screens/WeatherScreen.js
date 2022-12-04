@@ -31,7 +31,7 @@ const WeatherScreen = () => {
           description: data.weather[0].description,
         });
       });
-      console.log(setWeather);
+      console.log(weather);
     } catch (error) {
       console.log(error.response.data);
     }
