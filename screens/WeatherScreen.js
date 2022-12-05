@@ -16,6 +16,7 @@ const WeatherScreen = () => {
   });
 
   useEffect(() => {
+    getWeatherApi();
     if (weather.condition.length) {
       setTimeout(() => getWeatherApi(), 10000);
     }
