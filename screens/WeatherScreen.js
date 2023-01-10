@@ -15,16 +15,9 @@ const WeatherScreen = () => {
     condition: '',
   });
 
-  useEffect(() => {
-    getWeatherApi();
-    if (weather.condition.length) {
-      setTimeout(() => getWeatherApi(), 10000);
-    }
-  }, [weather]);
-
-  useEffect(() => {
-    getWeatherApi();
-  }, []);
+  // useEffect(() => {
+  //   getWeatherApi();
+  // }, []);
 
   const getWeatherApi = async () => {
     const API_KEY = '2cd518b6f461fdf5a043511d0292ab5c';

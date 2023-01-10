@@ -12,10 +12,34 @@ import axios from 'axios';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {LocationContext} from '../context/LocationContext';
+import {FlatList, ScrollView} from 'react-native-gesture-handler';
 
 const LocationScreen = () => {
   const [text, setText] = useState('');
   const {locationObj, setLocationObj} = useContext(LocationContext);
+  const Data = [
+    {id: 1, name: 'one'},
+    {id: 2, name: 'two'},
+    {id: 3, name: 'three'},
+    {id: 4, name: 'four'},
+    {id: 5, name: 'five'},
+  ];
+  const [data, setData] = useState(Data);
+  const [isRender, setisRender] = useState(false);
+
+  const renderItem = (item, index) => {
+    return (
+      <ScrollView>
+        <TouchableOpacity style={styles.item}>
+          <Text style={styles.locationText}>
+            {locationObj.si} {locationObj.gu} {locationObj.dong}
+          </Text>
+          <Text>위도 : {parseFloat(locationObj.locationX).toFixed(2)}</Text>
+          <Text>경도 : {parseFloat(locationObj.locationY).toFixed(2)}</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  };
 
   const callLocationApi = async ({text}) => {
     const encodeText = encodeURI(text);
@@ -78,11 +102,11 @@ const LocationScreen = () => {
           />
         </View>
         <View style={styles.textInputResult}>
-          <Text>'{text}' 검색 결과</Text>
+          <Text>검색 결과: {text}</Text>
         </View>
       </View>
       <View style={styles.wrapperBottom}>
-        <Text style={styles.locationText}>
+        {/* <Text >
           {locationObj.si} {locationObj.gu} {locationObj.dong}
         </Text>
         <Text style={styles.locationText_dong}>
@@ -90,7 +114,15 @@ const LocationScreen = () => {
         </Text>
         <Text style={styles.locationText_dong}>
           경도 : {locationObj.locationY}
-        </Text>
+        </Text> */}
+
+        <FlatList
+          data={data}
+          keyExtractor={item => item.id.toString()}
+          renderItem={renderItem}
+          extraData={isRender}
+        />
+
         <TouchableOpacity
           activeOpacity={0.8}
           style={styles.callLocationApiButton}
@@ -168,6 +200,13 @@ const styles = StyleSheet.create({
         },
   locationText: {
     fontSize: 24,
+    paddingBottom: 12,
+  },
+  item: {
+    margin: 15,
+    padding: 20,
+    borderWidth: 1,
+    borderRadius: 10,
   },
 });
 
